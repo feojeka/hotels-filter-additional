@@ -1,0 +1,61 @@
+<div class="row row-centered row-fixed padding-medium box-wrap">
+
+  <!-- Regular layout  -->
+
+  <div class="col col-xs-12 col-md-auto hide-md-max hide-sm-max">
+    <div class="filter-col-wrap bordered">
+      <span class="font-semibold" translate="common.filters"></span>
+    </div>
+  </div>
+  <div class="col col-xs-12 col-md-auto hide-sm-max">
+    <div class="filter-col-wrap search-filter bordered">
+      <i class="spent-icon search-icon color-ash"></i>
+      <input type="text" class="filter-input"
+             ng-model="$ctrl.additionalFilter.hotelName"
+             ng-change="$ctrl.filterLocal()"
+             placeholder="Hotel Name">
+    </div>
+  </div>
+  <div class="col col-xs-12 col-md-auto col-stretch-md hide-sm-max" ng-if="$ctrl.fixFilterMark">
+    <div class="filter-col-wrap bordered">
+      <rzslider rz-slider-model="$ctrl.slider.minVal"
+                rz-slider-high="$ctrl.slider.maxVal"
+                rz-slider-options="$ctrl.slider.options"></rzslider>
+    </div>
+  </div>
+  <div class="col col-xs-12 col-md-auto hide-sm-max">
+    <div class="filter-col-wrap rating-filter bordered">
+      <span ng-repeat="star in $ctrl.additionalFilter.stars">
+        <i class="spent-icon place-icon star-icon"
+           ng-class="{'active': star.active}"
+           ng-click="$ctrl.toggleStar(star)">
+          <i class="spent-icon star-outline-icon"></i>
+          <span class="icon-content color-white" ng-bind="star.value"></span>
+        </i>
+      </span>
+    </div>
+  </div>
+
+  <!-- Mobile popup button -->
+
+  <div class="col col-xs-5 open-modal-button-col hide-md">
+    <div class="filter-col-wrap bordered">
+      <span class="button purple expanded open-modal-button pointer"
+            ng-click="$ctrl.openMobileAdditionalFilter()"
+            translate="common.filters"></span>
+    </div>
+  </div>
+
+  <!-- Sorting options -->
+
+  <div class="col col-xs-7 col-md-auto sort-options">
+    <div class="filter-col-wrap">
+      <dropdown
+        additional-filter-mobile-sort="true"
+        list="$ctrl.sorts"
+        value="$ctrl.additionalFilter.sort"
+        on-select="$ctrl.filterLocal()">
+      </dropdown>
+    </div>
+  </div>
+</div>
